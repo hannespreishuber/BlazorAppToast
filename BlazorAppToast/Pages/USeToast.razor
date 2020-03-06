@@ -1,0 +1,22 @@
+﻿@page "/usetoast"
+@using Model
+
+<h3>ToastTest</h3>
+<div>
+    <input id="Button1" type="button" value="toaste" @onclick="Show" />
+    @Anzahl  <br>
+    @Par1
+
+</div>
+@code {
+    [Inject]
+    public ToastListe ToastListe { get; set; }
+    public int Anzahl { get; set; }
+    public string Par1 { get; set; }
+    public void Show()
+    {
+        Anzahl++;
+        Par1 = "sample " + ToastListe.Toasts.Count()+1.ToString();
+        ToastListe.Add(Par1);
+    }
+}

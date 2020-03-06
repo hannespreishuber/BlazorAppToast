@@ -1,0 +1,29 @@
+﻿@using Model 
+<div id="toastcontainer" style="position: absolute; top: 0; right: 0;">
+
+     @foreach (var toast in ToastListe.Toasts)
+      {
+         <ToastPopUp HeadText="@toast.Titel"></ToastPopUp>
+     }
+ </div>
+ @code {
+      [Inject]
+  public ToastListe ToastListe { get; set; }
+
+   protected override void OnInitialized()
+       {
+
+       base.OnInitialized();
+        ToastListe.OnToastsUpdated += () => InvokeAsync(StateHasChanged);
+   }
+}
+
+
+
+
+
+
+
+
+
+}
