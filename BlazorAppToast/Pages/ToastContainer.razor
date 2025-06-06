@@ -1,10 +1,10 @@
-﻿@using Model 
+﻿@using BlazorAppToast.Model
 <div id="toastcontainer" style="position: absolute; top: 0; right: 0;">
 
-     @foreach (var toast in ToastListe.Toasts)
-      {
-         <ToastPopUp HeadText="@toast.Titel"></ToastPopUp>
-     }
+    @foreach (var toast in ToastListe.Toasts)
+    {
+        <ToastPopUp HeadText="@toast.Titel" @key="@toast.Titel"></ToastPopUp>
+    }
  </div>
  @code {
       [Inject]
