@@ -25,6 +25,7 @@
     public Model.ToastListe ToastListe { get; set; }
     [Parameter]
     public string HeadText { get; set; }
+    private Timer _toastTimer;
     public void Remove()
     {
         ToastListe.Remove(HeadText);
@@ -32,9 +33,14 @@
     protected override void OnInitialized()
     {
 
-        var toastTimer = new Timer(10000);
-        toastTimer.Elapsed += (sender, args) => { ToastListe.Remove(HeadText);  };
-        toastTimer.AutoReset = false;
-        toastTimer.Start();
+         _toastTimer = new Timer(10000);
+        _toastTimer.Elapsed += (sender, args) => { ToastListe.Remove(HeadText);  };
+        _toastTimer.AutoReset = false;
+        _toastTimer.Start();
+    }
+
+    public void Dispose()
+    {
+        _toastTimer?.Dispose();
     }
 }
